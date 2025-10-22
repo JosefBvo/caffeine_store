@@ -3,18 +3,25 @@ require_once(__DIR__ . '/../db.php');
 
 $body = json_decode(file_get_contents('php://input'), true);
 
-if (!isset($body['email']) || !isset($body['password'])) {
-    send_json(['error' => 'email and password required'], 400);
+$firstName = $body['firstName'] ?? null;
+$lastName = $body['lastName'] ?? null;
+$username = $body['username'] ?? null;
+$email = $body['email'] ?? null;
+$password = $body['password'] ?? null;
+
+if (!$firstName || !$lastName || !$username || !$email || !$password) {
+    send_json(['error' => 'firstName, lastName, username, email, and password are required'], 400);
 }
 
-$email = $mysqli->real_escape_string($body['email']);
-$hash = password_hash($body['password'], PASSWORD_DEFAULT);
+// Password Creation
+$stmt = $mysqli->prepare("
+    INSERT INTO Users (firstName, lastName, username, email, password) 
+    VALUES (?, ?, ?, ?, ?)
+");
+$stmt->bind_param('sssss', $firstName, $lastName, $username, $email, $password);
 
-// Adjust table/column names
-$query = "INSERT INTO users (email, password_hash, created_at) VALUES ('$email', '$hash', NOW())";
-
-if ($mysqli->query($query)) {
-    send_json(['success' => true, 'message' => 'User registered'], 201);
+if ($stmt->execute()) {
+    send_json(['success' => true, 'message' => 'User registered', 'userID' => $stmt->insert_id], 201);
 } else {
     send_json(['error' => 'Registration failed: ' . $mysqli->error], 500);
 }

@@ -10,7 +10,6 @@ if (!$email || !$password) {
     send_json(['error' => 'email and password required'], 400);
 }
 
-// Use prepared statement for security
 $stmt = $mysqli->prepare("SELECT userID, email, password, firstName, lastName, role FROM Users WHERE email = ? LIMIT 1");
 $stmt->bind_param("s", $email);
 $stmt->execute();
@@ -22,7 +21,7 @@ if ($result->num_rows === 0) {
 
 $user = $result->fetch_assoc();
 
-// Plaintext check (matches your current DB)
+// Password validation
 if ($password !== $user['password']) {
     send_json(['error' => 'Invalid credentials'], 401);
 }

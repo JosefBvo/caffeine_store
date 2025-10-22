@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Backend Test (Debug Mode)</title>
+</head>
+<body>
+  <h1>Backend Test (Debug Mode)</h1>
+
+  <button id="testRegister">Test Register</button>
+  <button id="testLogin">Test Login</button>
+  <button id="testProducts">Test Products</button>
+  <button id="testOrder">Test Order</button>
+
+  <pre id="output"></pre>
+
+  <script>
+    const output = document.getElementById('output');
+    const API_BASE = './api'; // relative to backend_v2 folder
+
+    function show(data) {
+      output.textContent = JSON.stringify(data, null, 2);
+    }
+
+    async function fetchAndDebug(url, options = {}) {
+      try {
+        const res = await fetch(url, options);
+        const text = await res.text();  // get raw response
+        console.log('RAW RESPONSE FROM ' + url + ':', text);
+
+        try {
+          const json = JSON.parse(text);
+          show(json);
+        } catch {
+          output.textContent = '⚠️ Not valid JSON:\n' + text;
+        }
+      } catch (err) {
+        output.textContent = 'Fetch error: ' + err;
+      }
+    }
+
+    // --------------------------
+    // Register
+    // --------------------------
+    function testRegister() {
+      const email = `test${Date.now()}@example.com`;
+      fetchAndDebug(`${API_BASE}/register.php`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ email: email, password: '123456' })
+      });
+    }
+
+    // --------------------------
+    // Login
+    // --------------------------
+    function testLogin() {
+      fetchAndDebug(`${API_BASE}/login.php`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          email: 'namorenutrof@example.com',
+          password: 'adminpass123'
+        })
+      });
+    }
+
+    // --------------------------
+    // Products
+    // --------------------------
+    function testProducts() {
+      fetchAndDebug(`${API_BASE}/products.php?q=`);
+    }
+
+    // --------------------------
+    // Order
+    // --------------------------
+    function testOrder() {
+      fetchAndDebug(`${API_BASE}/order.php`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          user_id: 1, // adjust to match your Users table
+          items: [
+            { skuID: 1, quantity: 2, price: 19.99 },
+            { skuID: 2, quantity: 1, price: 9.99 }
+          ]
+        })
+      });
+    }
+
+    // --------------------------
+    // Attach buttons
+    // --------------------------
+    document.getElementById('testRegister').onclick = testRegister;
+    document.getElementById('testLogin').onclick = testLogin;
+    document.getElementById('testProducts').onclick = testProducts;
+    document.getElementById('testOrder').onclick = testOrder;
+  </script>
+</body>
+</html>
+

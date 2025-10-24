@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> caffeine shop </title>
+    <!-- css font ref-->
+    <link href='https://fonts.googleapis.com/css?family=Jomhuria' rel='stylesheet'>
+    <!-- css style sheet-->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<!-- header starts-->
+    <header>
+<nav class="navbar">
+    <a href="index.html"> Home </a>
+    <a href="about.html"> About </a>
+    <a href="products.html"> Products </a>
+    <a href="contact.html"> Contact </a>
+
+    <div class="login-signup">
+    <a href="login.html" class="btn"> Login </a>
+    <a href="signup.html" class="btn"> Sign Up </a>
+</div>
+</nav>
+    </header>
+<!-- header ends-->
+
+<div class="signup-container">
+<div class="journey-container">
+<h1>BE APART OF OUR JOURNEY</h1>
+</div>
+  <div class="login-container">
+    <div class="login-card">
+      <div class="login-header">SIGN UP</div>
+
+<form name="signup-form" action="http://localhost/caffeine_store/ShoppingWebsite/api/register.php" method="post">
+  <input type="text" placeholder="Type Your First Name" name="firstName" required />
+  <input type="text" placeholder="Type Your Last Name" name="lastName" required />
+  <input type="email" placeholder="Type Your Email" name="email" required />
+  <input type="text" placeholder="Type Your Username" name="username" required />
+  
+  <div class="form-group">
+    <div class="input-wrapper password-wrapper">
+      <input type="password" placeholder="Type Your Password" id="password" name="password" required autocomplete="current-password" />
+    </div>
+  </div>
+
+  <button type="submit">CREATE ACCOUNT</button>
+</form>
+
+        </div>
+        </div>
+
+      </form>
+
+      <div class="signup-link">
+        <p>Already have an account? <a href="login.html">Sign in</a></p>
+        </div>
+
+</div>
+</body>
+</html>

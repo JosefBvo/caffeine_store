@@ -308,3 +308,22 @@ button[type="submit"]:focus {
     margin-top: 2%;
     min-width: 300px;
 }
+.product-card h2 {
+    font-family: 'Jomhuria', cursive;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--black);
+}
+
+.product-card p {
+    font-family: 'Jomhuria', cursive;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: var(--black);
+}
+
+.product-card .product-price {
+    font-weight: bold;
+    font-size: 2rem;
+    color: var(--black);
+}

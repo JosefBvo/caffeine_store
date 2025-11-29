@@ -1,64 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Caffeine Shop</title>
-<link href='https://fonts.googleapis.com/css?family=Jomhuria' rel='stylesheet'>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caffeine Shop</title>
+    <link href="https://fonts.googleapis.com/css?family=Jomhuria" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* Product Page Layout (keeps your style system) */
+        .products-section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .products-title {
+            font-size: 5rem;
+            color: var(--black);
+            letter-spacing: 1px;
+            margin-bottom: 4rem;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+            gap: 3rem;
+        }
+
+        .product-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 1rem;
+            text-align: center;
+            box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-name {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--black);
+        }
+
+        .product-desc {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--black);
+        }
+
+        .product-price {
+            font-size: 2.2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: var(--black);
+        }
+
+        .product-stock {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: var(--black);
+        }
+
+        .add-btn {
+            padding: 1.5rem 3rem;
+            background: var(--pink);
+            color: var(--white);
+            font-size: 2rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            border: none;
+        }
+
+        .add-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-0.2rem) scale(1.02);
+            transition: 0.2s ease;
+        }
+    </style>
 </head>
 
 <body>
-<!-- header starts-->
+
+<!-- Header -->
 <header>
-<nav class="navbar">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="products.html">Products</a>
-    <a href="contact.html">Contact</a>
+    <nav class="navbar">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="products.html">Products</a>
+        <a href="contact.html">Contact</a>
 
-    <div class="login-signup">
-        <a href="login.html" class="btn">Login</a>
-        <a href="signup.html" class="btn">Sign Up</a>
-    </div>
-</nav>
+        <div class="login-signup">
+            <a href="login.html" class="btn">Login</a>
+            <a href="signup.html" class="btn">Sign Up</a>
+        </div>
+    </nav>
 </header>
-<!-- header ends-->
 
+<!-- Products Section -->
 <section class="products-section">
-    <h1 class="products-title" style="text-align:center; margin-bottom:4rem;">Our Products</h1>
+    <h1 class="products-title" style="text-align:center;">Our Products</h1>
 
-    <div class="products-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(30rem, 1fr)); gap:3rem; max-width:1200px; margin:0 auto;">
+    <div class="products-grid">
 
         <!-- Product 1 -->
-        <div class="product-card" style="background:var(--white); padding:2rem; border-radius:1rem; box-shadow:0 0 10px rgba(0,0,0,0.1); text-align:center;">
-            <h2 class="product-name" style="font-family:'Jomhuria'; font-size:2.5rem; margin-bottom:1rem;">Ospuze Energy Drink</h2>
-            <p class="product-desc" style="font-size:1.8rem; margin-bottom:1rem;">A 12oz can of high-caffeine energy drink</p>
-            <p class="product-price" style="font-size:2rem; font-weight:bold; margin-bottom:1rem;">$2.99</p>
-            <p style="margin-bottom:2rem;">Stock: 150</p>
+        <div class="product-card">
+            <h2 class="product-name">Ospuze Energy Drink</h2>
+            <p class="product-desc">A 12oz can of high-caffeine energy drink</p>
+            <p class="product-price">$2.99</p>
+            <p class="product-stock">Stock: 150</p>
 
             <form method="post" action="cart.php">
                 <input type="hidden" name="skuID" value="1">
                 <input type="hidden" name="name" value="Ospuze Energy Drink">
                 <input type="hidden" name="price" value="2.99">
                 <input type="hidden" name="quantity" value="1">
-                <button type="submit" style="padding:1.5rem 3rem; background:var(--pink); color:var(--white); font-size:2rem; border-radius:0.5rem; cursor:pointer;">Add to Cart</button>
+                <button class="add-btn" type="submit">Add to Cart</button>
             </form>
         </div>
 
         <!-- Product 2 -->
-        <div class="product-card" style="background:var(--white); padding:2rem; border-radius:1rem; box-shadow:0 0 10px rgba(0,0,0,0.1); text-align:center;">
-            <h2 class="product-name" style="font-family:'Jomhuria'; font-size:2.5rem; margin-bottom:1rem;">Coffee that makes u scream</h2>
-            <p class="product-desc" style="font-size:1.8rem; margin-bottom:1rem;">1 lb bag of dark roast coffee beans.</p>
-            <p class="product-price" style="font-size:2rem; font-weight:bold; margin-bottom:1rem;">$21.99</p>
-            <p style="margin-bottom:2rem;">Stock: 60</p>
+        <div class="product-card">
+            <h2 class="product-name">Coffee that makes u scream</h2>
+            <p class="product-desc">1 lb bag of dark roast coffee beans</p>
+            <p class="product-price">$21.99</p>
+            <p class="product-stock">Stock: 60</p>
 
             <form method="post" action="cart.php">
                 <input type="hidden" name="skuID" value="2">
                 <input type="hidden" name="name" value="Coffee that makes u scream">
                 <input type="hidden" name="price" value="21.99">
                 <input type="hidden" name="quantity" value="1">
-                <button type="submit" style="padding:1.5rem 3rem; background:var(--pink); color:var(--white); font-size:2rem; border-radius:0.5rem; cursor:pointer;">Add to Cart</button>
+                <button class="add-btn" type="submit">Add to Cart</button>
             </form>
         </div>
 
@@ -67,3 +139,4 @@
 
 </body>
 </html>
+
